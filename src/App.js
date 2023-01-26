@@ -1,25 +1,29 @@
-import './App.css';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import Cart from './Conponent/Cart/Cart';
-import PayCart from './Conponent/PayCart/PayCart';
+import React, {useState} from "react";
 
-function App(prop) {
-  return (
-    <div className="App">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Perfume</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Cart</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      <div className="main-bg"></div>
-      <Cart />
-      {/* <PayCart /> */}
-    </div>
-  );
+import Card from "./Card";
+
+const App =()=>{
+    const [data, setData]=useState([
+        {id:1, completed:false, title: "task1"},
+        {id:1, completed:true, title: "task2"}
+    ]);
+  /*   const onToggleChange=(id)=>{
+        setData(
+            data.map((value)=>
+            value.id===id ? {...value, completed: !value.completed}:value)
+        )}
+    const onDelete =(id)=>{
+        setData(data.filter((value)=> value.id !==id))
+
+    };
+
+     */
+    
+    return <div>
+        {data.map((value)=>(
+            <Card key={value.id} {...value} onToggleChange={onToggleChange} onDelete={onDelete}/>
+        ))}
+        
+    </div>;
 }
-
 export default App;
